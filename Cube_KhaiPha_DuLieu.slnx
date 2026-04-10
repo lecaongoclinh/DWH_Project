@@ -1,0 +1,13 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Development" />
+    <Platform Name="Default" />
+  </Configurations>
+  <Project Path="../ETL_TU_IDB_SANG_DW/ETL_TU_IDB_SANG_DW/ETL_TU_IDB_SANG_DW.dtproj" Type="c9674dcb-5085-4a16-b785-4c70dd1589bd">
+    <Platform Project="?" />
+  </Project>
+  <Project Path="Cube_KhaiPha_DuLieu/Cube_KhaiPha_DuLieu.dwproj" Type="d2abab84-bf74-430a-b69e-9dc6d40dda17">
+    <Platform Project="?" />
+    <Deploy />
+  </Project>
+</Solution>
