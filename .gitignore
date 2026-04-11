@@ -5,3 +5,4 @@
 *.dwproj.user
 *.suo
 IncrementalAnalysisServicesDbCache.xml
+Project.params
