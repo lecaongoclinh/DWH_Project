@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="66"
-  DTS:VersionGUID="{70FA44DF-A71F-4BB2-A2C8-C80794F6DE3A}">
+  DTS:VersionBuild="70"
+  DTS:VersionGUID="{A2350D9C-E3B4-470E-A251-3D4F3B9FF22C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -2447,6 +2447,179 @@ WHERE SourceData.KhoaTG NOT IN (SELECT KhoaTG FROM KhoDuLieu_BanHang.dbo.Dim_Tho
           version="1">
           <components>
             <component
+              refId="Package\Đổ dữ liệu Fact_BanHang\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Fact_BanHang]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Fact_BanHang]) [refTable]
+where [refTable].[MaKH] = ? and [refTable].[MaMH] = ? and [refTable].[KhoaTG] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="MaKH" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MaMH" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="KhoaTG" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TongTien" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SoLuongHangDat" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Đổ dữ liệu Fact_BanHang\OLE DB Source.Outputs[OLE DB Source Output].Columns[Ma_KH]};#{Package\Đổ dữ liệu Fact_BanHang\OLE DB Source.Outputs[OLE DB Source Output].Columns[Ma_MH]};#{Package\Đổ dữ liệu Fact_BanHang\OLE DB Source.Outputs[OLE DB Source Output].Columns[KhoaTG]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Đổ dữ liệu Fact_BanHang\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.KhoDuLieu_BanHang]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.KhoDuLieu_BanHang]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Đổ dữ liệu Fact_BanHang\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Đổ dữ liệu Fact_BanHang\Lookup.Inputs[Lookup Input].Columns[Ma_KH]"
+                      cachedDataType="i4"
+                      cachedName="Ma_KH"
+                      lineageId="Package\Đổ dữ liệu Fact_BanHang\OLE DB Source.Outputs[OLE DB Source Output].Columns[Ma_KH]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">MaKH</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Đổ dữ liệu Fact_BanHang\Lookup.Inputs[Lookup Input].Columns[Ma_MH]"
+                      cachedDataType="i4"
+                      cachedName="Ma_MH"
+                      lineageId="Package\Đổ dữ liệu Fact_BanHang\OLE DB Source.Outputs[OLE DB Source Output].Columns[Ma_MH]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">MaMH</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Đổ dữ liệu Fact_BanHang\Lookup.Inputs[Lookup Input].Columns[KhoaTG]"
+                      cachedDataType="i4"
+                      cachedName="KhoaTG"
+                      lineageId="Package\Đổ dữ liệu Fact_BanHang\OLE DB Source.Outputs[OLE DB Source Output].Columns[KhoaTG]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">KhoaTG</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Đổ dữ liệu Fact_BanHang\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Đổ dữ liệu Fact_BanHang\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Đổ dữ liệu Fact_BanHang\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Đổ dữ liệu Fact_BanHang\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Đổ dữ liệu Fact_BanHang\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Đổ dữ liệu Fact_BanHang\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Đổ dữ liệu Fact_BanHang\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Đổ dữ liệu Fact_BanHang\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Đổ dữ liệu Fact_BanHang\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Đổ dữ liệu Fact_BanHang\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Đổ dữ liệu Fact_BanHang\Lọc MaKH tồn tại"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
@@ -2938,8 +3111,13 @@ GROUP BY
               name="Lookup Match Output"
               startId="Package\Đổ dữ liệu Fact_BanHang\Lọc MaKH tồn tại.Outputs[Lookup Match Output]" />
             <path
-              refId="Package\Đổ dữ liệu Fact_BanHang.Paths[OLE DB Source Output]"
+              refId="Package\Đổ dữ liệu Fact_BanHang.Paths[Lookup No Match Output]"
               endId="Package\Đổ dữ liệu Fact_BanHang\Lọc MaKH tồn tại.Inputs[Lookup Input]"
+              name="Lookup No Match Output"
+              startId="Package\Đổ dữ liệu Fact_BanHang\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Đổ dữ liệu Fact_BanHang.Paths[OLE DB Source Output]"
+              endId="Package\Đổ dữ liệu Fact_BanHang\Lookup.Inputs[Lookup Input]"
               name="OLE DB Source Output"
               startId="Package\Đổ dữ liệu Fact_BanHang\OLE DB Source.Outputs[OLE DB Source Output]" />
           </paths>
@@ -2960,6 +3138,179 @@ GROUP BY
         <pipeline
           version="1">
           <components>
+            <component
+              refId="Package\Đổ dữ liệu Fact_TonKho\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Fact_TonKho]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Fact_TonKho]) [refTable]
+where [refTable].[MaCH] = ? and [refTable].[MaMH] = ? and [refTable].[KhoaTG] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="MaCH" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MaMH" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="KhoaTG" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SoLuongTon" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Đổ dữ liệu Fact_TonKho\OLE DB Source.Outputs[OLE DB Source Output].Columns[Ma_CH]};#{Package\Đổ dữ liệu Fact_TonKho\OLE DB Source.Outputs[OLE DB Source Output].Columns[Ma_MH]};#{Package\Đổ dữ liệu Fact_TonKho\OLE DB Source.Outputs[OLE DB Source Output].Columns[KhoaTG]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Đổ dữ liệu Fact_TonKho\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.KhoDuLieu_BanHang]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.KhoDuLieu_BanHang]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Đổ dữ liệu Fact_TonKho\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Đổ dữ liệu Fact_TonKho\Lookup.Inputs[Lookup Input].Columns[Ma_CH]"
+                      cachedDataType="i4"
+                      cachedName="Ma_CH"
+                      lineageId="Package\Đổ dữ liệu Fact_TonKho\OLE DB Source.Outputs[OLE DB Source Output].Columns[Ma_CH]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">MaCH</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Đổ dữ liệu Fact_TonKho\Lookup.Inputs[Lookup Input].Columns[Ma_MH]"
+                      cachedDataType="i4"
+                      cachedName="Ma_MH"
+                      lineageId="Package\Đổ dữ liệu Fact_TonKho\OLE DB Source.Outputs[OLE DB Source Output].Columns[Ma_MH]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">MaMH</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Đổ dữ liệu Fact_TonKho\Lookup.Inputs[Lookup Input].Columns[KhoaTG]"
+                      cachedDataType="i4"
+                      cachedName="KhoaTG"
+                      lineageId="Package\Đổ dữ liệu Fact_TonKho\OLE DB Source.Outputs[OLE DB Source Output].Columns[KhoaTG]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">KhoaTG</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Đổ dữ liệu Fact_TonKho\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Đổ dữ liệu Fact_TonKho\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Đổ dữ liệu Fact_TonKho\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Đổ dữ liệu Fact_TonKho\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Đổ dữ liệu Fact_TonKho\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Đổ dữ liệu Fact_TonKho\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Đổ dữ liệu Fact_TonKho\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Đổ dữ liệu Fact_TonKho\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Đổ dữ liệu Fact_TonKho\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Đổ dữ liệu Fact_TonKho\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
             <component
               refId="Package\Đổ dữ liệu Fact_TonKho\OLE DB Destination"
               componentClassID="Microsoft.OLEDBDestination"
@@ -3286,8 +3637,13 @@ WHERE NOT EXISTS (
           </components>
           <paths>
             <path
-              refId="Package\Đổ dữ liệu Fact_TonKho.Paths[OLE DB Source Output]"
+              refId="Package\Đổ dữ liệu Fact_TonKho.Paths[Lookup No Match Output]"
               endId="Package\Đổ dữ liệu Fact_TonKho\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Đổ dữ liệu Fact_TonKho\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Đổ dữ liệu Fact_TonKho.Paths[OLE DB Source Output]"
+              endId="Package\Đổ dữ liệu Fact_TonKho\Lookup.Inputs[Lookup Input]"
               name="OLE DB Source Output"
               startId="Package\Đổ dữ liệu Fact_TonKho\OLE DB Source.Outputs[OLE DB Source Output]" />
           </paths>
@@ -3716,9 +4072,7 @@ WHERE NOT EXISTS (
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4114,7 +4468,7 @@ WHERE NOT EXISTS (
     design-time-name="Package\Đổ dữ liệu Dim_MatHang">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="170.666666666667,42"
           Id="Package\Đổ dữ liệu Dim_MatHang\OLE DB Destination"
@@ -4142,9 +4496,7 @@ WHERE NOT EXISTS (
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4180,7 +4532,7 @@ WHERE NOT EXISTS (
     design-time-name="Package\Đổ dữ liệu Dim_ThoiGian">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="150.666666666667,42.6666666666667"
           Id="Package\Đổ dữ liệu Dim_ThoiGian\OLE DB Source"
@@ -4208,9 +4560,7 @@ WHERE NOT EXISTS (
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4232,29 +4582,57 @@ WHERE NOT EXISTS (
         <NodeLayout
           Size="170.666666666667,42"
           Id="Package\Đổ dữ liệu Fact_BanHang\OLE DB Destination"
-          TopLeft="580.999998956919,179.000002563" />
+          TopLeft="826.312487990596,176.562502679229" />
         <NodeLayout
           Size="150,42"
           Id="Package\Đổ dữ liệu Fact_BanHang\OLE DB Source"
-          TopLeft="45.0000061094759,180.000000208616" />
+          TopLeft="28.1250068638471,185.687499937415" />
         <NodeLayout
           Size="160,42.6666666666667"
           Id="Package\Đổ dữ liệu Fact_BanHang\Lọc MaKH tồn tại"
-          TopLeft="324.999990314245,178.999994665384" />
+          TopLeft="486.718733084854,178.187494704127" />
         <EdgeLayout
-          Id="Package\Đổ dữ liệu Fact_BanHang.Paths[OLE DB Source Output]"
-          TopLeft="195.000006109476,200.666664103667">
+          Id="Package\Đổ dữ liệu Fact_BanHang.Paths[Lookup Match Output]"
+          TopLeft="646.718733084854,198.541665358345">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="129.999984204769,0"
+              EndConnector="179.593754905742,0"
               Start="0,0"
-              End="122.499984204769,0">
+              End="172.093754905742,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="122.499984204769,0" />
+                    End="172.093754905742,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="28.9868383903711,5,114.120078125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\Đổ dữ liệu Fact_BanHang\Lookup"
+          TopLeft="230.468739697244,182.812491282821" />
+        <EdgeLayout
+          Id="Package\Đổ dữ liệu Fact_BanHang.Paths[OLE DB Source Output]"
+          TopLeft="178.125006863847,205.416662276785">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="52.3437328333973,0"
+              Start="0,0"
+              End="44.8437328333973,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="44.8437328333973,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4264,26 +4642,26 @@ WHERE NOT EXISTS (
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Đổ dữ liệu Fact_BanHang.Paths[Lookup Match Output]"
-          TopLeft="484.999990314245,200.166665280859">
+          Id="Package\Đổ dữ liệu Fact_BanHang.Paths[Lookup No Match Output]"
+          TopLeft="343.802073030578,201.833326326807">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="96.0000086426739,0"
+              EndConnector="142.916660054276,0"
               Start="0,0"
-              End="88.5000086426739,0">
+              End="135.416660054276,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="88.5000086426739,0" />
+                    End="135.416660054276,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-12.810034741163,5,114.120078125,16"
+              BoundingBox="11.901943308388,5,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4338,36 +4716,62 @@ WHERE NOT EXISTS (
     design-time-name="Package\Đổ dữ liệu Fact_TonKho">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\Đổ dữ liệu Fact_TonKho\OLE DB Source"
-          TopLeft="161.000007212162,203.000001996756" />
+          TopLeft="163.000007152557,207.000001877547" />
         <NodeLayout
           Size="170.666666666667,42"
           Id="Package\Đổ dữ liệu Fact_TonKho\OLE DB Destination"
-          TopLeft="486.000003695488,207.000005215406" />
+          TopLeft="684.999997764826,203.000005334615" />
+        <NodeLayout
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\Đổ dữ liệu Fact_TonKho\Lookup"
+          TopLeft="423.999987363816,206.999993830919" />
         <EdgeLayout
           Id="Package\Đổ dữ liệu Fact_TonKho.Paths[OLE DB Source Output]"
-          TopLeft="311.000007212162,226.000003606081">
+          TopLeft="313.000007152557,228.1666645209">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="174.999996483326,0"
+              EndConnector="110.999980211258,0"
               Start="0,0"
-              End="167.499996483326,0">
+              End="103.499980211258,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="167.499996483326,0" />
+                    End="103.499980211258,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Đổ dữ liệu Fact_TonKho.Paths[Lookup No Match Output]"
+          TopLeft="537.333320697149,226.166666249434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="147.666677067677,0"
+              Start="0,0"
+              End="140.166677067677,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="140.166677067677,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
+              BoundingBox="14.2769518150885,5,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4390,6 +4794,52 @@ WHERE NOT EXISTS (
   <PipelineComponentMetadata
     design-time-name="Package\Đổ dữ liệu Fact_TonKho\OLE DB Source">
     <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Đổ dữ liệu Fact_BanHang\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Fact_BanHang]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Đổ dữ liệu Fact_TonKho\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Fact_TonKho]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
