@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="70"
-  DTS:VersionGUID="{A2350D9C-E3B4-470E-A251-3D4F3B9FF22C}">
+  DTS:VersionBuild="75"
+  DTS:VersionGUID="{D72DC981-1980-41DA-93A0-7C444E4FCE8D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -29,7 +29,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=.\DWH_SALE;Initial Catalog=IDB_HeThongCu;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{89D074C9-4740-4514-8B8D-9B7879F62EE0}LocalHost.IDB_HeThongCu;" />
+          DTS:ConnectionString="Data Source=LELINH\LINH;Initial Catalog=IDB_HeThongCu;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{89D074C9-4740-4514-8B8D-9B7879F62EE0}LocalHost.IDB_HeThongCu;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -45,7 +45,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=.\DWH_SALE;Initial Catalog=KhoDuLieu_BanHang;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{CBAF96DE-B446-4485-8CB4-3D72AE529F24}LocalHost.KhoDuLieu_BanHang;" />
+          DTS:ConnectionString="Data Source=LELINH\LINH;Initial Catalog=KhoDuLieu_BanHang;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{CBAF96DE-B446-4485-8CB4-3D72AE529F24}LocalHost.KhoDuLieu_BanHang;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -831,7 +831,7 @@ where [refTable].[MaCH] = ?</property>
                     <externalMetadataColumn
                       refId="Package\Đổ dữ liệu Dim_DiaDiem\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Bang]"
                       dataType="wstr"
-                      length="50"
+                      length="100"
                       name="Bang" />
                     <externalMetadataColumn
                       refId="Package\Đổ dữ liệu Dim_DiaDiem\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TenTP]"
@@ -1847,7 +1847,7 @@ LEFT JOIN KH_Buu_Dien bd ON kh.Ma_KH = bd.Ma_KH</property>
                     <externalMetadataColumn
                       refId="Package\Đổ dữ liệu Dim_MatHang\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[KichCo]"
                       dataType="wstr"
-                      length="20"
+                      length="50"
                       name="KichCo" />
                     <externalMetadataColumn
                       refId="Package\Đổ dữ liệu Dim_MatHang\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TrongLuong]"
@@ -1855,11 +1855,14 @@ LEFT JOIN KH_Buu_Dien bd ON kh.Ma_KH = bd.Ma_KH</property>
                       name="TrongLuong" />
                     <externalMetadataColumn
                       refId="Package\Đổ dữ liệu Dim_MatHang\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GiaBan]"
-                      dataType="cy"
-                      name="GiaBan" />
+                      dataType="numeric"
+                      name="GiaBan"
+                      precision="18"
+                      scale="2" />
                     <externalMetadataColumn
                       refId="Package\Đổ dữ liệu Dim_MatHang\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MoTa]"
-                      dataType="nText"
+                      dataType="wstr"
+                      length="255"
                       name="MoTa" />
                   </externalMetadataColumns>
                 </input>
@@ -2879,8 +2882,10 @@ where [refTable].[MaKH] = ?</property>
                       name="KhoaTG" />
                     <externalMetadataColumn
                       refId="Package\Đổ dữ liệu Fact_BanHang\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TongTien]"
-                      dataType="cy"
-                      name="TongTien" />
+                      dataType="numeric"
+                      name="TongTien"
+                      precision="18"
+                      scale="2" />
                     <externalMetadataColumn
                       refId="Package\Đổ dữ liệu Fact_BanHang\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SoLuongHangDat]"
                       dataType="i4"
@@ -4072,7 +4077,9 @@ WHERE NOT EXISTS (
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4296,28 +4303,6 @@ WHERE NOT EXISTS (
           Id="Package\Đổ dữ liệu Dim_KhachHang\Lookup khóa ngoại tới MaTP"
           TopLeft="319.999990463257,95.9999971389771" />
         <EdgeLayout
-          Id="Package\Đổ dữ liệu Dim_KhachHang.Paths[OLE DB Source Output]"
-          TopLeft="236.000005155802,240.333332752188">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="92.9999850392345,0"
-              Start="0,0"
-              End="85.4999850392345,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="85.4999850392345,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Đổ dữ liệu Dim_KhachHang.Paths[Lookup No Match Output]"
           TopLeft="415.666656861703,222.333329906066">
           <EdgeLayout.Curve>
@@ -4389,6 +4374,30 @@ WHERE NOT EXISTS (
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Đổ dữ liệu Dim_KhachHang.Paths[OLE DB Source Output]"
+          TopLeft="236.000005155802,240.333332752188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="92.9999850392345,0"
+              Start="0,0"
+              End="85.4999850392345,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="85.4999850392345,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -4411,7 +4420,7 @@ WHERE NOT EXISTS (
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4421,7 +4430,7 @@ WHERE NOT EXISTS (
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4532,7 +4541,7 @@ WHERE NOT EXISTS (
     design-time-name="Package\Đổ dữ liệu Dim_ThoiGian">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150.666666666667,42.6666666666667"
           Id="Package\Đổ dữ liệu Dim_ThoiGian\OLE DB Source"
@@ -4560,7 +4569,9 @@ WHERE NOT EXISTS (
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4591,6 +4602,10 @@ WHERE NOT EXISTS (
           Size="160,42.6666666666667"
           Id="Package\Đổ dữ liệu Fact_BanHang\Lọc MaKH tồn tại"
           TopLeft="486.718733084854,178.187494704127" />
+        <NodeLayout
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\Đổ dữ liệu Fact_BanHang\Lookup"
+          TopLeft="230.468739697244,182.812491282821" />
         <EdgeLayout
           Id="Package\Đổ dữ liệu Fact_BanHang.Paths[Lookup Match Output]"
           TopLeft="646.718733084854,198.541665358345">
@@ -4615,10 +4630,6 @@ WHERE NOT EXISTS (
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="113.333333333334,42.6666666666667"
-          Id="Package\Đổ dữ liệu Fact_BanHang\Lookup"
-          TopLeft="230.468739697244,182.812491282821" />
         <EdgeLayout
           Id="Package\Đổ dữ liệu Fact_BanHang.Paths[OLE DB Source Output]"
           TopLeft="178.125006863847,205.416662276785">
@@ -4712,15 +4723,34 @@ WHERE NOT EXISTS (
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Đổ dữ liệu Fact_BanHang\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Fact_BanHang]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Đổ dữ liệu Fact_TonKho">
     <LayoutInfo>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="150,42"
-          Id="Package\Đổ dữ liệu Fact_TonKho\OLE DB Source"
-          TopLeft="163.000007152557,207.000001877547" />
         <NodeLayout
           Size="170.666666666667,42"
           Id="Package\Đổ dữ liệu Fact_TonKho\OLE DB Destination"
@@ -4729,28 +4759,10 @@ WHERE NOT EXISTS (
           Size="113.333333333334,42.6666666666667"
           Id="Package\Đổ dữ liệu Fact_TonKho\Lookup"
           TopLeft="423.999987363816,206.999993830919" />
-        <EdgeLayout
-          Id="Package\Đổ dữ liệu Fact_TonKho.Paths[OLE DB Source Output]"
-          TopLeft="313.000007152557,228.1666645209">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="110.999980211258,0"
-              Start="0,0"
-              End="103.499980211258,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="103.499980211258,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Đổ dữ liệu Fact_TonKho\OLE DB Source"
+          TopLeft="163.000007152557,207.000001877547" />
         <EdgeLayout
           Id="Package\Đổ dữ liệu Fact_TonKho.Paths[Lookup No Match Output]"
           TopLeft="537.333320697149,226.166666249434">
@@ -4775,6 +4787,30 @@ WHERE NOT EXISTS (
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Đổ dữ liệu Fact_TonKho.Paths[OLE DB Source Output]"
+          TopLeft="313.000007152557,228.1666645209">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="110.999980211258,0"
+              Start="0,0"
+              End="103.499980211258,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="103.499980211258,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -4792,43 +4828,12 @@ WHERE NOT EXISTS (
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Đổ dữ liệu Fact_TonKho\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Đổ dữ liệu Fact_BanHang\Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[Fact_BanHang]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Đổ dữ liệu Fact_TonKho\Lookup">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4838,8 +4843,16 @@ WHERE NOT EXISTS (
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Đổ dữ liệu Fact_TonKho\OLE DB Source">
+    <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>

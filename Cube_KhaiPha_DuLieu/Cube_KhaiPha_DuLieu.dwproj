@@ -60,7 +60,7 @@
           <ConfigurationSetting>
             <Id>KhoDuLieu_BanHang</Id>
             <Name>KhoDuLieu_BanHang</Name>
-            <Value xsi:type="xsd:string">Provider=SQLOLEDB.1;Data Source=localhost;Integrated Security=SSPI;Initial Catalog=KhoDuLieu_BanHang</Value>
+            <Value xsi:type="xsd:string">Provider=SQLOLEDB.1;Data Source=LELINH\LINH;Integrated Security=SSPI;Initial Catalog=KhoDuLieu_BanHang</Value>
           </ConfigurationSetting>
         </ConnectionMappings>
         <ConnectionSecurityMappings>
